@@ -46,9 +46,9 @@ export const isAssessmentPassing = (
 ) => {
   if (!isNil(assessmentValue)) {
     if (assessmentInfo.dtype === 'pass-fail') {
-      if (assessmentValue === KnownEvaluationResultAssessmentStringValue.YES) {
+      if (assessmentValue === KnownEvaluationResultAssessmentStringValue.YES || assessmentValue === KnownEvaluationResultAssessmentStringValue.PASS) {
         return true;
-      } else if (assessmentValue === KnownEvaluationResultAssessmentStringValue.NO) {
+      } else if (assessmentValue === KnownEvaluationResultAssessmentStringValue.NO || assessmentValue === KnownEvaluationResultAssessmentStringValue.FAIL) {
         return false;
       }
     } else if (assessmentInfo.dtype === 'boolean') {
@@ -160,8 +160,20 @@ function getAssessmentTagDisplayValue(
       const knownMapping = KnownEvaluationResultAssessmentValueMapping[assessmentInfo.name];
 
       if (knownMapping) {
+        let lookupValue = KnownEvaluationResultAssessmentStringValue.YES;
+        
+        if (value) {
+          const strValue = value.toString().toUpperCase();
+          if (strValue === KnownEvaluationResultAssessmentStringValue.PASS) {
+            lookupValue = KnownEvaluationResultAssessmentStringValue.YES;
+          } else if (strValue === KnownEvaluationResultAssessmentStringValue.FAIL) {
+            lookupValue = KnownEvaluationResultAssessmentStringValue.NO;
+          } else {
+            lookupValue = value.toString() as KnownEvaluationResultAssessmentStringValue;
+          }
+        }
         const messageDescriptor = value
-          ? (knownMapping[value.toString()] ?? knownMapping[KnownEvaluationResultAssessmentStringValue.YES])
+          ? (knownMapping[lookupValue] ?? knownMapping[KnownEvaluationResultAssessmentStringValue.YES])
           : knownMapping[KnownEvaluationResultAssessmentStringValue.YES];
         if (messageDescriptor) {
           tagText = <FormattedMessage {...messageDescriptor} values={{ value }} />;

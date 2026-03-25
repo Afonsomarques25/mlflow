@@ -160,6 +160,8 @@ export const ASSESSMENTS_DOC_LINKS: Record<string, AssessmentLearnMoreLink> = {
 export enum KnownEvaluationResultAssessmentStringValue {
   YES = 'yes',
   NO = 'no',
+  PASS = 'PASS',
+  FAIL = 'FAIL',
   UNKNOWN = 'unknown',
 }
 
@@ -179,7 +181,7 @@ export function getAssessmentValueLabel(
     };
   }
   if (assessmentInfo.dtype === 'pass-fail') {
-    if (value === KnownEvaluationResultAssessmentStringValue.YES) {
+    if (value === KnownEvaluationResultAssessmentStringValue.YES || value === KnownEvaluationResultAssessmentStringValue.PASS) {
       return {
         content: intl.formatMessage({
           defaultMessage: 'Pass',
@@ -189,7 +191,7 @@ export function getAssessmentValueLabel(
           <span
             css={{
               color: `${getEvaluationResultIconColor(theme, assessmentInfo, {
-                stringValue: KnownEvaluationResultAssessmentStringValue.YES,
+                stringValue: value,
               })} !important`,
               svg: {
                 width: '12px',
@@ -200,7 +202,7 @@ export function getAssessmentValueLabel(
             <CheckCircleIcon
               css={{
                 backgroundColor: getEvaluationResultAssessmentBackgroundColor(theme, assessmentInfo, {
-                  stringValue: KnownEvaluationResultAssessmentStringValue.YES,
+                  stringValue: value,
                 }),
                 borderRadius: '50%',
               }}
@@ -208,7 +210,7 @@ export function getAssessmentValueLabel(
           </span>
         ),
       };
-    } else if (value === KnownEvaluationResultAssessmentStringValue.NO) {
+    } else if (value === KnownEvaluationResultAssessmentStringValue.NO || value === KnownEvaluationResultAssessmentStringValue.FAIL) {
       return {
         content: intl.formatMessage({
           defaultMessage: 'Fail',
@@ -218,7 +220,7 @@ export function getAssessmentValueLabel(
           <span
             css={{
               color: `${getEvaluationResultIconColor(theme, assessmentInfo, {
-                stringValue: KnownEvaluationResultAssessmentStringValue.NO,
+                stringValue: value,
               })} !important`,
               svg: {
                 width: '12px',
@@ -229,7 +231,7 @@ export function getAssessmentValueLabel(
             <XCircleIcon
               css={{
                 backgroundColor: getEvaluationResultAssessmentBackgroundColor(theme, assessmentInfo, {
-                  stringValue: KnownEvaluationResultAssessmentStringValue.NO,
+                  stringValue: value,
                 }),
                 borderRadius: '50%',
               }}
