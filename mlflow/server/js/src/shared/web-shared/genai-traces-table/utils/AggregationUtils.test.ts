@@ -442,81 +442,6 @@ describe('getAssessmentInfos', () => {
 
     expect(mixedAssessmentInfo?.isSessionLevelAssessment).toBe(true);
   });
-
-  it('should set isSessionLevelAssessment to true when any assessment has session metadata', () => {
-    const currentEvaluationResults = makeTracesFromAssessments([
-      {
-        responseAssessmentsByName: {
-          sessionAssessment: [
-            {
-              name: 'sessionAssessment',
-              stringValue: 'yes',
-              metadata: { [ASSESSMENT_SESSION_METADATA_KEY]: 'session-123' },
-            },
-          ],
-        },
-      },
-      {
-        responseAssessmentsByName: {
-          sessionAssessment: [{ name: 'sessionAssessment', stringValue: 'no' }],
-        },
-      },
-    ]);
-
-    const result = getAssessmentInfos(intl, currentEvaluationResults, undefined);
-    const sessionAssessmentInfo = result.find((info) => info.name === 'sessionAssessment');
-
-    expect(sessionAssessmentInfo?.isSessionLevelAssessment).toBe(true);
-  });
-
-  it('should set isSessionLevelAssessment to false when no assessments have session metadata', () => {
-    const currentEvaluationResults = makeTracesFromAssessments([
-      {
-        responseAssessmentsByName: {
-          regularAssessment: [{ name: 'regularAssessment', stringValue: 'yes' }],
-        },
-      },
-      {
-        responseAssessmentsByName: {
-          regularAssessment: [{ name: 'regularAssessment', stringValue: 'no' }],
-        },
-      },
-    ]);
-
-    const result = getAssessmentInfos(intl, currentEvaluationResults, undefined);
-    const regularAssessmentInfo = result.find((info) => info.name === 'regularAssessment');
-
-    expect(regularAssessmentInfo?.isSessionLevelAssessment).toBe(false);
-  });
-
-  it('should set isSessionLevelAssessment correctly when merging current and other evaluation results', () => {
-    const currentEvaluationResults = makeTracesFromAssessments([
-      {
-        responseAssessmentsByName: {
-          mixedAssessment: [{ name: 'mixedAssessment', stringValue: 'yes' }],
-        },
-      },
-    ]);
-
-    const otherEvaluationResults = makeTracesFromAssessments([
-      {
-        responseAssessmentsByName: {
-          mixedAssessment: [
-            {
-              name: 'mixedAssessment',
-              stringValue: 'no',
-              metadata: { [ASSESSMENT_SESSION_METADATA_KEY]: 'session-456' },
-            },
-          ],
-        },
-      },
-    ]);
-
-    const result = getAssessmentInfos(intl, currentEvaluationResults, otherEvaluationResults);
-    const mixedAssessmentInfo = result.find((info) => info.name === 'mixedAssessment');
-
-    expect(mixedAssessmentInfo?.isSessionLevelAssessment).toBe(true);
-  });
 });
 
 describe('getAssessmentAggregateOverallFraction', () => {
@@ -1126,7 +1051,7 @@ describe('getBarChartData', () => {
       }),
     ]);
   });
-  
+
   it('normalizes PASS into yes and FAIL into no for pass-fail dtype', () => {
     const mockAssessmentInfo = createMockAssessmentInfo('pass-fail', ['yes', 'no', 'PASS', 'FAIL']);
 
@@ -1157,7 +1082,7 @@ describe('getBarChartData', () => {
       expect.objectContaining({
         name: 'Pass',
         current: expect.objectContaining({
-          value: 3, 
+          value: 3,
           fraction: 3 / 6,
           tooltip: '3/6 for run "Current Run"',
         }),

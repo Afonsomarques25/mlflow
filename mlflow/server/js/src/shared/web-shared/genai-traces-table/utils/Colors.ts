@@ -96,10 +96,16 @@ export const getEvaluationResultIconColor = (
 
   if (assessmentInfo.dtype === 'pass-fail') {
     // Return the color based on the assessment value
-    if (assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.YES || assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.PASS) {
+    if (
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.YES ||
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.PASS
+    ) {
       return theme.isDarkMode ? theme.colors.green400 : theme.colors.green600;
     }
-    if (assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.NO || assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.FAIL) {
+    if (
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.NO ||
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.FAIL
+    ) {
       return theme.isDarkMode ? theme.colors.red400 : theme.colors.red600;
     }
   }
@@ -122,10 +128,16 @@ export const getEvaluationResultAssessmentBackgroundColor = (
 
   if (assessmentInfo.dtype === 'pass-fail') {
     // Return the color based on the assessment value
-    if (assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.YES || assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.PASS) {
+    if (
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.YES ||
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.PASS
+    ) {
       return TAG_PASS_COLOR;
     }
-    if (assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.NO || assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.FAIL) {
+    if (
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.NO ||
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.FAIL
+    ) {
       return theme.isDarkMode ? withAlpha(theme.colors.red800, 0.6) : theme.colors.red200;
     }
     if (!iconOnly && assessment?.errorMessage) {
@@ -156,9 +168,15 @@ export const getEvaluationResultTextColor = (
 
   if (assessmentInfo.dtype === 'pass-fail') {
     // Return the color based on the assessment value
-    if (assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.YES || assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.PASS) {
+    if (
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.YES ||
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.PASS
+    ) {
       return theme.isDarkMode ? theme.colors.green400 : theme.colors.green600;
-    } else if (assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.NO || assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.FAIL) {
+    } else if (
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.NO ||
+      assessment?.stringValue === KnownEvaluationResultAssessmentStringValue.FAIL
+    ) {
       return theme.isDarkMode ? theme.colors.red400 : theme.colors.red600;
     } else {
       return theme.colors.textSecondary;
@@ -191,10 +209,16 @@ export const getAssessmentValueBarBackgroundColor = (
 
   if (assessmentInfo.dtype === 'pass-fail') {
     // Return the color based on the assessment value
-    if (assessmentValue === KnownEvaluationResultAssessmentStringValue.YES || assessmentValue === KnownEvaluationResultAssessmentStringValue.PASS) {
+    if (
+      assessmentValue === KnownEvaluationResultAssessmentStringValue.YES ||
+      assessmentValue === KnownEvaluationResultAssessmentStringValue.PASS
+    ) {
       return PASS_BARCHART_BAR_COLOR;
     }
-    if (assessmentValue === KnownEvaluationResultAssessmentStringValue.NO || assessmentValue === KnownEvaluationResultAssessmentStringValue.FAIL) {
+    if (
+      assessmentValue === KnownEvaluationResultAssessmentStringValue.NO ||
+      assessmentValue === KnownEvaluationResultAssessmentStringValue.FAIL
+    ) {
       return FAIL_BARCHART_BAR_COLOR;
     }
     return theme.isDarkMode ? theme.colors.grey800 : theme.colors.grey200;

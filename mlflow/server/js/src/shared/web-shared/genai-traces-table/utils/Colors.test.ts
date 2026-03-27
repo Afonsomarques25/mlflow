@@ -30,8 +30,12 @@ describe('Colors utils - PASS/FAIL support', () => {
 
   describe('getEvaluationResultIconColor', () => {
     it('should return green for YES and PASS', () => {
-      expect(getEvaluationResultIconColor(mockTheme, mockAssessmentInfo, { stringValue: 'yes' })).toBe('mock-green-600');
-      expect(getEvaluationResultIconColor(mockTheme, mockAssessmentInfo, { stringValue: 'PASS' })).toBe('mock-green-600');
+      expect(getEvaluationResultIconColor(mockTheme, mockAssessmentInfo, { stringValue: 'yes' })).toBe(
+        'mock-green-600',
+      );
+      expect(getEvaluationResultIconColor(mockTheme, mockAssessmentInfo, { stringValue: 'PASS' })).toBe(
+        'mock-green-600',
+      );
     });
 
     it('should return red for NO and FAIL', () => {
@@ -45,20 +49,32 @@ describe('Colors utils - PASS/FAIL support', () => {
     const TAG_PASS_COLOR = '#02B30214';
 
     it('should return PASS background color for YES and PASS', () => {
-      expect(getEvaluationResultAssessmentBackgroundColor(mockTheme, mockAssessmentInfo, { stringValue: 'yes' })).toBe(TAG_PASS_COLOR);
-      expect(getEvaluationResultAssessmentBackgroundColor(mockTheme, mockAssessmentInfo, { stringValue: 'PASS' })).toBe(TAG_PASS_COLOR);
+      expect(getEvaluationResultAssessmentBackgroundColor(mockTheme, mockAssessmentInfo, { stringValue: 'yes' })).toBe(
+        TAG_PASS_COLOR,
+      );
+      expect(getEvaluationResultAssessmentBackgroundColor(mockTheme, mockAssessmentInfo, { stringValue: 'PASS' })).toBe(
+        TAG_PASS_COLOR,
+      );
     });
 
     it('should return FAIL background color for NO and FAIL', () => {
-      expect(getEvaluationResultAssessmentBackgroundColor(mockTheme, mockAssessmentInfo, { stringValue: 'no' })).toBe('mock-red-200');
-      expect(getEvaluationResultAssessmentBackgroundColor(mockTheme, mockAssessmentInfo, { stringValue: 'FAIL' })).toBe('mock-red-200');
+      expect(getEvaluationResultAssessmentBackgroundColor(mockTheme, mockAssessmentInfo, { stringValue: 'no' })).toBe(
+        'mock-red-200',
+      );
+      expect(getEvaluationResultAssessmentBackgroundColor(mockTheme, mockAssessmentInfo, { stringValue: 'FAIL' })).toBe(
+        'mock-red-200',
+      );
     });
   });
 
   describe('getEvaluationResultTextColor', () => {
     it('should return green text for YES and PASS', () => {
-      expect(getEvaluationResultTextColor(mockTheme, mockAssessmentInfo, { stringValue: 'yes' })).toBe('mock-green-600');
-      expect(getEvaluationResultTextColor(mockTheme, mockAssessmentInfo, { stringValue: 'PASS' })).toBe('mock-green-600');
+      expect(getEvaluationResultTextColor(mockTheme, mockAssessmentInfo, { stringValue: 'yes' })).toBe(
+        'mock-green-600',
+      );
+      expect(getEvaluationResultTextColor(mockTheme, mockAssessmentInfo, { stringValue: 'PASS' })).toBe(
+        'mock-green-600',
+      );
     });
 
     it('should return red text for NO and FAIL', () => {

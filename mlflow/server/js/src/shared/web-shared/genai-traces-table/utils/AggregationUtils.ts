@@ -604,7 +604,7 @@ export function getBarChartData(
       for (const [key, value] of merged.entries()) {
         if (typeof key === 'string') {
           const upKey = key.toUpperCase();
-          
+
           if (upKey === KnownEvaluationResultAssessmentStringValue.PASS) {
             const yesVal = merged.get(KnownEvaluationResultAssessmentStringValue.YES) || 0;
             merged.set(KnownEvaluationResultAssessmentStringValue.YES, yesVal + value);
@@ -620,7 +620,7 @@ export function getBarChartData(
     };
     currentCounts = mergeCounts(currentCounts);
     otherCounts = mergeCounts(otherCounts);
-    keys = keys.filter(k => typeof k !== 'string' || !['PASS', 'FAIL'].includes(k.toUpperCase()));
+    keys = keys.filter((k) => typeof k !== 'string' || !['PASS', 'FAIL'].includes(k.toUpperCase()));
   }
 
   const barItems: StackedBarchartItem[] = [];
@@ -712,12 +712,18 @@ function getAssessmentBarChartValueText(
   value: string | boolean | number | undefined,
 ): string {
   if (assessmentInfo.dtype === 'pass-fail') {
-    if (value === KnownEvaluationResultAssessmentStringValue.YES || value === KnownEvaluationResultAssessmentStringValue.PASS) {
+    if (
+      value === KnownEvaluationResultAssessmentStringValue.YES ||
+      value === KnownEvaluationResultAssessmentStringValue.PASS
+    ) {
       return intl.formatMessage({
         defaultMessage: 'Pass',
         description: 'The label for a passing asseessment above a bar-chart in the summary stats.',
       });
-    } else if (value === KnownEvaluationResultAssessmentStringValue.NO || value === KnownEvaluationResultAssessmentStringValue.FAIL) {
+    } else if (
+      value === KnownEvaluationResultAssessmentStringValue.NO ||
+      value === KnownEvaluationResultAssessmentStringValue.FAIL
+    ) {
       return intl.formatMessage({
         defaultMessage: 'Fail',
         description: 'The label for a failing asseessment above a bar-chart in the summary stats.',

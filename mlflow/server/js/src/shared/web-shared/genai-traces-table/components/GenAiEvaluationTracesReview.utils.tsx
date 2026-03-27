@@ -181,7 +181,10 @@ export function getAssessmentValueLabel(
     };
   }
   if (assessmentInfo.dtype === 'pass-fail') {
-    if (value === KnownEvaluationResultAssessmentStringValue.YES || value === KnownEvaluationResultAssessmentStringValue.PASS) {
+    if (
+      value === KnownEvaluationResultAssessmentStringValue.YES ||
+      value === KnownEvaluationResultAssessmentStringValue.PASS
+    ) {
       return {
         content: intl.formatMessage({
           defaultMessage: 'Pass',
@@ -210,7 +213,10 @@ export function getAssessmentValueLabel(
           </span>
         ),
       };
-    } else if (value === KnownEvaluationResultAssessmentStringValue.NO || value === KnownEvaluationResultAssessmentStringValue.FAIL) {
+    } else if (
+      value === KnownEvaluationResultAssessmentStringValue.NO ||
+      value === KnownEvaluationResultAssessmentStringValue.FAIL
+    ) {
       return {
         content: intl.formatMessage({
           defaultMessage: 'Fail',

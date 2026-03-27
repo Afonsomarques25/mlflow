@@ -46,9 +46,15 @@ export const isAssessmentPassing = (
 ) => {
   if (!isNil(assessmentValue)) {
     if (assessmentInfo.dtype === 'pass-fail') {
-      if (assessmentValue === KnownEvaluationResultAssessmentStringValue.YES || assessmentValue === KnownEvaluationResultAssessmentStringValue.PASS) {
+      if (
+        assessmentValue === KnownEvaluationResultAssessmentStringValue.YES ||
+        assessmentValue === KnownEvaluationResultAssessmentStringValue.PASS
+      ) {
         return true;
-      } else if (assessmentValue === KnownEvaluationResultAssessmentStringValue.NO || assessmentValue === KnownEvaluationResultAssessmentStringValue.FAIL) {
+      } else if (
+        assessmentValue === KnownEvaluationResultAssessmentStringValue.NO ||
+        assessmentValue === KnownEvaluationResultAssessmentStringValue.FAIL
+      ) {
         return false;
       }
     } else if (assessmentInfo.dtype === 'boolean') {
@@ -161,7 +167,7 @@ function getAssessmentTagDisplayValue(
 
       if (knownMapping) {
         let lookupValue = KnownEvaluationResultAssessmentStringValue.YES;
-        
+
         if (value) {
           const strValue = value.toString().toUpperCase();
           if (strValue === KnownEvaluationResultAssessmentStringValue.PASS) {
